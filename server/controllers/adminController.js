@@ -540,9 +540,16 @@ const uploadFile = async (req, res) => {
     // Continue even if optimization fails, serving original file
   }
 
-  // Construct public URL using request headers (works for localhost and render without ENV setup)
-  // Use explicit API_URL env if provided, otherwise deduce from request
-  const baseUrl = process.env.API_URL || `${req.protocol}://${req.get('host')}`;
+  // Construct public URL using request headers
+  let protocol = req.protocol;
+  const host = req.get('host');
+
+  // Force HTTPS on Render/Production (unless localhost)
+  if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
+    protocol = 'https';
+  }
+
+  const baseUrl = process.env.API_URL || `${protocol}://${host}`;
   const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
 
   res.json({
