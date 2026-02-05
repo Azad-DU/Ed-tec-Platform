@@ -540,8 +540,10 @@ const uploadFile = async (req, res) => {
     // Continue even if optimization fails, serving original file
   }
 
-  // Construct public URL
-  const fileUrl = `${process.env.API_URL || 'http://localhost:5000'}/uploads/${req.file.filename}`;
+  // Construct public URL using request headers (works for localhost and render without ENV setup)
+  // Use explicit API_URL env if provided, otherwise deduce from request
+  const baseUrl = process.env.API_URL || `${req.protocol}://${req.get('host')}`;
+  const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
 
   res.json({
     success: true,
