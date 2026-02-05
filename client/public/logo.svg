@@ -1,9 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" fill="none">
-  <path d="M40 30 C 40 20, 60 20, 60 30 L 60 60 C 60 70, 40 70, 40 60 Z M 70 30 C 70 20, 90 20, 90 30 L 90 60 C 90 70, 70 70, 70 60 Z" fill="#00A651"/>
-  <path d="M 40 45 L 90 45 M 50 35 L 50 55 M 80 35 L 80 55" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-  
-  <text x="110" y="62" font-family="Arial, sans-serif" font-weight="bold" font-size="36" fill="#00A651">EdTech</text>
-  
-  <rect x="230" y="36" width="50" height="30" rx="5" fill="#00A651"/>
-  <text x="255" y="57" font-family="Arial, sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">BD</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Red Circle (Sun/Head) -->
+  <circle cx="256" cy="120" r="50" fill="#f42a41" />
+
+  <!-- Green Book/Shield Shape -->
+  <!-- Left Side -->
+  <path d="M256 240 L112 170 L112 370 L256 450 Z" fill="#006a4e" />
+  <!-- Right Side (Slightly lighter for 3D effect, or same flat color) -->
+  <!-- Using same color for flat logo request, or slightly different for depth -->
+  <path d="M256 240 L400 170 L400 370 L256 450 Z" fill="#005c44" />
+
+  <!-- White Growth Arrow -->
+  <g transform="translate(0, 10)">
+    <!-- Main Shaft -->
+    <path d="M170 310 L256 380 L360 250" fill="none" stroke="white" stroke-width="45" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Arrow Head -->
+    <path d="M360 250 L360 320 M360 250 L290 250" fill="none" stroke="white" stroke-width="45" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Filling the arrow head for sharpness -->
+    <path d="M385 240 L385 330 L280 235 Z" fill="white" stroke="none" />
+  </g>
 </svg>
