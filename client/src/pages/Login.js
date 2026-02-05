@@ -159,7 +159,7 @@ const Login = () => {
           {/* Header */}
           <div className="text-center">
             <div className="flex justify-center mb-4">
-              <span className="text-6xl">📚</span>
+              <img src="/logo.svg" alt="EdTech BD" className="w-20 h-20 object-contain" />
             </div>
             <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
               Welcome Back
@@ -217,17 +217,7 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Demo Credentials Info */}
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-4">
-            <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-300 mb-2">
-              Demo Credentials:
-            </p>
-            <p className="text-xs text-emerald-700 dark:text-emerald-400">
-              Email: <code className="bg-emerald-100 dark:bg-emerald-800 px-1.5 py-0.5 rounded font-mono">student@edtech.bd</code>
-              <br />
-              Password: <code className="bg-emerald-100 dark:bg-emerald-800 px-1.5 py-0.5 rounded font-mono">password123</code>
-            </p>
-          </div>
+
 
           {/* Register Link */}
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
