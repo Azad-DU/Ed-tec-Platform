@@ -18,6 +18,9 @@ const adminRoutes = require('./routes/admin');
 const reviewRoutes = require('./routes/reviews');
 
 const app = express();
+// Trust Proxy for Render/Vercel (needed for req.protocol to be 'https')
+app.set('trust proxy', 1);
+
 const PORT = process.env.PORT || 5000;
 
 // Request logging middleware
