@@ -1,0 +1,406 @@
+
+> client@0.1.0 start
+> craco start
+
+(node:15616) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:15616) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled with warnings.
+
+Warning
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/pages/AdminPanel.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/pages/AdminPanel.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+webpack compiled with [1m[33m4 warnings[39m[22m
+Compiling...
+Compiled with warnings.
+
+Warning
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CreateCourse.js
+  Line 21:10:  'uploading' is assigned a value but never used         no-unused-vars
+  Line 35:9:   'handleFileUpload' is assigned a value but never used  no-unused-vars
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/pages/AdminPanel.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/pages/AdminPanel.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CreateCourse.js
+  Line 21:10:  'uploading' is assigned a value but never used         no-unused-vars
+  Line 35:9:   'handleFileUpload' is assigned a value but never used  no-unused-vars
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+webpack compiled with [1m[33m4 warnings[39m[22m
+Compiling...
+Compiled with warnings.
+
+Warning
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/pages/AdminPanel.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/pages/AdminPanel.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+webpack compiled with [1m[33m4 warnings[39m[22m
+Compiling...
+Compiled with warnings.
+
+Warning
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/pages/AdminPanel.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/pages/AdminPanel.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+webpack compiled with [1m[33m4 warnings[39m[22m
+Compiling...
+Compiled with warnings.
+
+Warning
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Warning
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(113:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/components/DiscussionBoard.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/components/DiscussionBoard.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(340:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m./src/pages/AdminPanel.css[39m[22m (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/pages/AdminPanel.css)
+[1mModule Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+Warning
+
+(165:3) autoprefixer: start value has mixed support, consider using flex-start instead[39m[22m
+
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\components\DiscussionBoard.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchDiscussions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\components\QuizInterface.js
+  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchQuizData'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  Line 40:6:  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\context\AuthContext.js
+  Line 19:6:  React Hook useEffect has a missing dependency: 'loadUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseCatalog.js
+  Line 2:10:  'Link' is defined but never used                                                                                 no-unused-vars
+  Line 24:6:  React Hook useEffect has a missing dependency: 'applyFilters'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\CourseView.js
+  Line 24:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditCourse.js
+  Line 27:6:  React Hook useEffect has a missing dependency: 'fetchCourseData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+webpack compiled with [1m[33m4 warnings[39m[22m
