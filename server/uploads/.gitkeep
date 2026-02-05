@@ -1,0 +1,10 @@
+# Uploads Directory
+
+This directory stores uploaded content including:
+- Video lectures
+- PDF documents
+- Case study files
+- Course thumbnails
+- User avatars
+
+Files in this directory are served statically via `/uploads` endpoint.
