@@ -44,6 +44,12 @@
   font-size: 28px;
 }
 
+.nav-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .logo-text {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   -webkit-background-clip: text;

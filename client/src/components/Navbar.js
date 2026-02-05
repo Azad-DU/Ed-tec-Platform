@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <span className="logo-icon">📚</span>
+          <img src="/logo.svg" alt="EdTech BD" className="nav-logo-img" />
           <span className="logo-text">EdTech BD</span>
         </Link>
 
