@@ -229,14 +229,29 @@ const DiscussionBoard = ({ moduleId }) => {
                   </div>
 
                   <div className="form-group">
-                    <label className="checkbox-label">
-                      <input
-                        type="checkbox"
-                        checked={newThread.is_qa}
-                        onChange={(e) => setNewThread({ ...newThread, is_qa: e.target.checked })}
-                      />
-                      <span>This is a Q&A question</span>
-                    </label>
+                    <label>Thread Type</label>
+                    <div className="thread-type-options" style={{ display: 'flex', gap: '20px' }}>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'normal' }}>
+                        <input
+                          type="radio"
+                          name="threadType"
+                          checked={!newThread.is_qa}
+                          onChange={() => setNewThread({ ...newThread, is_qa: false })}
+                          style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
+                        />
+                        <span>General Discussion</span>
+                      </label>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'normal' }}>
+                        <input
+                          type="radio"
+                          name="threadType"
+                          checked={newThread.is_qa}
+                          onChange={() => setNewThread({ ...newThread, is_qa: true })}
+                          style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
+                        />
+                        <span>Ask a Question</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
 
@@ -278,6 +293,8 @@ const DiscussionBoard = ({ moduleId }) => {
                 )}
             </div>
 
+
+
             <div className="original-post">
               <div className="post-author-info">
                 <span className="author-name">👤 {selectedDiscussion.author_name}</span>
@@ -294,6 +311,28 @@ const DiscussionBoard = ({ moduleId }) => {
                   <p key={idx} className="mb-2">{paragraph}</p>
                 ))}
               </div>
+
+              {/* Facebook-style Reply Action */}
+              {['instructor', 'admin'].includes(user?.role) && (
+                <div className="post-actions" style={{ marginTop: '15px', borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                  <button
+                    className="btn-text-reply"
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#65676b',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                    onClick={() => document.querySelector('.reply-form textarea')?.focus()}
+                  >
+                    ↩ Reply
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Replies */}
@@ -341,9 +380,9 @@ const DiscussionBoard = ({ moduleId }) => {
               )}
             </div>
           </div>
-        </div>
+        </div >
       )}
-    </div>
+    </div >
   );
 };
 
