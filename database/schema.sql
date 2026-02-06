@@ -250,3 +250,18 @@ CREATE TABLE discussion_replies (
 -- Note: In production, change this immediately
 INSERT INTO users (email, password_hash, full_name, role) VALUES 
 ('admin@edtech.bd', '$2b$10$YourHashedPasswordHere', 'Admin User', 'admin');
+-- Reviews table: Course ratings and reviews
+CREATE TABLE reviews (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_review (course_id, user_id),
+    INDEX idx_course (course_id),
+    INDEX idx_rating (rating)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

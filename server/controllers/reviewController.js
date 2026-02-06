@@ -52,6 +52,8 @@ const createReview = async (req, res) => {
     const { rating, review_text } = req.body;
     const user_id = req.user.user_id;
 
+    console.log(`[DEBUG] Creating review - User: ${user_id}, Course: ${courseId}, Rating: ${rating}`);
+
     // Validate rating
     if (!rating || rating < 1 || rating > 5) {
       return res.status(400).json({
@@ -63,9 +65,11 @@ const createReview = async (req, res) => {
     // Check if user is enrolled in the course (skip for admin)
     if (req.user.role !== 'admin') {
       const [enrollment] = await promisePool.query(
-        'SELECT * FROM enrollments WHERE user_id = ? AND course_id = ?',
+        "SELECT * FROM enrollments WHERE user_id = ? AND course_id = ? AND enrollment_status IN ('active', 'completed')",
         [user_id, courseId]
       );
+
+      console.log(`[DEBUG] Enrollment check result:`, enrollment);
 
       if (enrollment.length === 0) {
         return res.status(403).json({
@@ -93,6 +97,8 @@ const createReview = async (req, res) => {
       'INSERT INTO reviews (course_id, user_id, rating, review_text) VALUES (?, ?, ?, ?)',
       [courseId, user_id, rating, review_text || null]
     );
+
+    console.log(`[DEBUG] Review created successfully. ID: ${result.insertId}`);
 
     res.status(201).json({
       success: true,

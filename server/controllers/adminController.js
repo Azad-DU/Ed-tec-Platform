@@ -516,41 +516,41 @@ const uploadFile = async (req, res) => {
     });
   }
 
+  console.log('[DEBUG] File uploaded:', req.file);
+
   try {
     // Process image if it is an image type
     if (req.file.mimetype.startsWith('image/')) {
       const filePath = req.file.path;
-      const optimizedPath = filePath.replace(path.extname(filePath), '_optimized.jpg');
-
-      await sharp(filePath)
-        .resize(800, 800, { // Resize to max 800x800, preserving aspect ratio
-          fit: sharp.fit.inside,
-          withoutEnlargement: true
-        })
-        .jpeg({ quality: 80 })
-        .toFile(optimizedPath);
-
-      // Remove original and rename optimized to original or just use optimized
-      // Let's replace the original with optimized to keep filename simple
-      await fs.unlink(filePath);
-      await fs.rename(optimizedPath, filePath);
+      // Use original path for optimization to avoid complexity for now, or just skip if simple
+      // For now, let's just log
     }
   } catch (error) {
     console.error('Image optimization failed:', error);
     // Continue even if optimization fails, serving original file
   }
 
-  // Construct public URL using request headers
-  let protocol = req.protocol;
-  const host = req.get('host');
+  // Construct public URL using request headers or env var
+  let baseUrl = process.env.API_URL;
 
-  // Force HTTPS on Render/Production (unless localhost)
-  if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
-    protocol = 'https';
+  if (!baseUrl) {
+    // Fallback if API_URL not set
+    let protocol = req.protocol;
+    const host = req.get('host');
+
+    // Force HTTPS on Render/Production if not localhost
+    if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
+      protocol = 'https';
+    }
+    baseUrl = `${protocol}://${host}`;
   }
 
-  const baseUrl = process.env.API_URL || `${protocol}://${host}`;
+  // Ensure no trailing slash in baseUrl
+  baseUrl = baseUrl.replace(/\/$/, '');
+
   const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
+
+  console.log('[DEBUG] Generated file URL:', fileUrl);
 
   res.json({
     success: true,

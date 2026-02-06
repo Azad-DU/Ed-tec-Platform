@@ -100,7 +100,7 @@ echo   Email: student@edtech.bd
 echo   Password: password123
 echo.
 echo   Email: admin@edtech.bd
-echo   Password: password123
+echo   Password: admin123
 echo.
 echo Next Steps:
 echo 1. Restart your backend server (Ctrl+C then: npm run dev)

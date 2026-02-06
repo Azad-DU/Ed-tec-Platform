@@ -5,6 +5,7 @@ import { courseAPI, reviewAPI } from '../services/apiService';
 const LandingPage = () => {
   const [popularCourses, setPopularCourses] = useState([]);
   const [loadingCourses, setLoadingCourses] = useState(true);
+  const [courseCount, setCourseCount] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const scrollRef = React.useRef(null);
@@ -19,7 +20,9 @@ const LandingPage = () => {
         ]);
 
         if (coursesRes.data.success) {
-          setPopularCourses(coursesRes.data.data.slice(0, 3));
+          const courses = coursesRes.data.data;
+          setPopularCourses(courses.slice(0, 3));
+          setCourseCount(courses.length);
         }
 
         if (reviewsRes.data.success) {
@@ -87,11 +90,9 @@ const LandingPage = () => {
   const stats = [
     { number: '6,894+', label: 'Active Students', icon: '👥' },
     { number: '50+', label: 'Expert Instructors', icon: '🎓' },
-    { number: '100+', label: 'Quality Courses', icon: '📚' },
+    { number: `${courseCount}+`, label: 'Quality Courses', icon: '📚' },
     { number: '68%', label: 'Completion Rate', icon: '⭐' },
   ];
-
-
 
   const getTagStyle = (difficulty) => {
     switch (difficulty) {
@@ -139,7 +140,8 @@ const LandingPage = () => {
               </h1>
 
               <p className="text-xl md:text-2xl text-emerald-100 dark:text-emerald-200 leading-relaxed">
-                Master in-demand skills with expert-led courses. Start learning today and unlock your potential in Web Development, Data Science, Design, and more.
+                Master all the courses you need to learn to complete your HSC level as a business background student. We deliver maximum value to you.Our platform is designed to help you overcome all the academic struggles as business background students.
+                .
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -185,7 +187,7 @@ const LandingPage = () => {
                   <div className="flex items-center space-x-3">
                     <span className="text-4xl">📚</span>
                     <div>
-                      <div className="text-2xl font-bold text-gray-900 dark:text-white">100+</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">{courseCount}+</div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Courses</div>
                     </div>
                   </div>
@@ -279,6 +281,10 @@ const LandingPage = () => {
                         src={course.thumbnail || course.thumbnail_url}
                         alt={course.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = 'https://via.placeholder.com/600x400?text=Course+Image';
+                        }}
                       />
                     ) : (
                       <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -347,63 +353,34 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Reviews Section - Modern Carousel */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-              What Our Students Say
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Real success stories from our community
-            </p>
-          </div>
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Trusted by Students</h2>
 
           {loadingReviews ? (
-            <div className="flex justify-center items-center py-12">
-              <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-            </div>
+            <div className="flex justify-center"><div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div></div>
           ) : reviews.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 dark:text-gray-400 text-lg">No reviews yet.</p>
-            </div>
+            <p className="text-center text-gray-500">No reviews yet.</p>
           ) : (
             <div
               ref={scrollRef}
-              className="flex overflow-x-auto gap-8 pb-8 px-4 snap-x hide-scrollbar"
-              style={{
-                scrollBehavior: 'smooth',
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}
+              className="flex gap-6 overflow-x-auto pb-8 snap-mandatory snap-x hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {reviews.map((review) => (
-                <div
-                  key={review.review_id}
-                  className="flex-none w-full md:w-[400px] snap-center bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700"
-                >
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className={`text-xl ${i < review.rating ? 'text-yellow-500' : 'text-gray-300 dark:text-gray-600'}`}>★</span>
-                    ))}
-                  </div>
-
-                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 italic leading-relaxed line-clamp-4 h-32">
-                    "{review.review_text}"
-                  </p>
-
-                  <div className="flex items-center mt-auto">
-                    <img
-                      src={review.profile_picture_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(review.full_name)}&background=random`}
-                      alt={review.full_name}
-                      className="w-14 h-14 rounded-full object-cover mr-4 ring-4 ring-emerald-100 dark:ring-emerald-900"
-                    />
+                <div key={review.review_id} className="min-w-[300px] md:min-w-[400px] bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 snap-center">
+                  <div className="flex items-center gap-4 mb-4">
+                    <img src={review.profile_picture_url || `https://ui-avatars.com/api/?name=${review.full_name}&background=random`} alt="" className="w-12 h-12 rounded-full bg-gray-100 object-cover" />
                     <div>
                       <div className="font-bold text-gray-900 dark:text-white">{review.full_name}</div>
-                      <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">{review.course_title}</div>
+                      <div className="text-xs text-gray-500">{review.course_title}</div>
                     </div>
                   </div>
+                  <div className="flex text-amber-500 mb-3 text-sm">
+                    {[...Array(5)].map((_, i) => <span key={i}>{i < review.rating ? '★' : '☆'}</span>)}
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-4">"{review.review_text}"</p>
                 </div>
               ))}
             </div>
@@ -445,7 +422,7 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 dark:bg-gray-950 text-white pt-16 pb-8">
+      <footer className="bg-white dark:bg-gray-950 pt-16 pb-8 border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Footer Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -471,9 +448,6 @@ const LandingPage = () => {
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
                 </a>
               </div>
             </div>
@@ -506,13 +480,6 @@ const LandingPage = () => {
                   <div>
                     <p className="font-medium text-white">Phone</p>
                     <a href="tel:+8801700000000" className="hover:text-purple-400 transition-colors">+880 1700-000000</a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 text-gray-400">
-                  <span className="text-xl mt-0.5">💬</span>
-                  <div>
-                    <p className="font-medium text-white">WhatsApp</p>
-                    <a href="https://wa.me/8801700000000" className="hover:text-purple-400 transition-colors">+880 1700-000000</a>
                   </div>
                 </li>
               </ul>
