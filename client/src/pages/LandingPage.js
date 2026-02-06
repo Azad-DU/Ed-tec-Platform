@@ -13,25 +13,29 @@ const LandingPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // Fetch Courses
       try {
-        const [coursesRes, reviewsRes] = await Promise.all([
-          courseAPI.getAllCourses(),
-          reviewAPI.getAllReviews()
-        ]);
-
+        const coursesRes = await courseAPI.getAllCourses();
         if (coursesRes.data.success) {
           const courses = coursesRes.data.data;
           setPopularCourses(courses.slice(0, 3));
           setCourseCount(courses.length);
         }
+      } catch (error) {
+        console.error('Failed to fetch courses:', error);
+      } finally {
+        setLoadingCourses(false);
+      }
 
+      // Fetch Reviews
+      try {
+        const reviewsRes = await reviewAPI.getAllReviews();
         if (reviewsRes.data.success) {
           setReviews(reviewsRes.data.data);
         }
       } catch (error) {
-        console.error('Failed to fetch data:', error);
+        console.error('Failed to fetch reviews:', error);
       } finally {
-        setLoadingCourses(false);
         setLoadingReviews(false);
       }
     };

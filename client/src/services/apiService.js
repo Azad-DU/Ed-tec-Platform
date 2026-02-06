@@ -56,7 +56,7 @@ export const quizAPI = {
 
 // Discussion APIs
 export const discussionAPI = {
-  getDiscussions: (moduleId) => apiClient.get(`/discussions?module_id=${moduleId}`),
+  getDiscussions: (moduleId) => apiClient.get(`/discussions/modules/${moduleId}`),
   getDiscussionById: (discussionId) => apiClient.get(`/discussions/${discussionId}`),
   createDiscussion: (data) => apiClient.post('/discussions', data),
   createReply: (discussionId, content) => apiClient.post(`/discussions/${discussionId}/replies`, { content }),

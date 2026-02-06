@@ -68,6 +68,7 @@ app.use(sanitizeInput);
 
 // Static files (for uploaded content) with CORS headers
 app.use('/uploads', (req, res, next) => {
+  console.log(`[DEBUG] Static file request: ${req.url}`);
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Cross-Origin-Resource-Policy', 'cross-origin');
   next();

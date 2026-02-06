@@ -111,7 +111,7 @@ const createReview = async (req, res) => {
     console.error('Create review error:', error);
     res.status(500).json({
       success: false,
-      message: 'Failed to create review',
+      message: `Failed to create review: ${error.message}`,
       error: error.message
     });
   }
