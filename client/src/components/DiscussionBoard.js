@@ -318,21 +318,27 @@ const DiscussionBoard = ({ moduleId }) => {
                 </div>
               ))}
 
-              {/* Reply Form */}
-              <div className="reply-form">
-                <h4>Write a Reply</h4>
-                <textarea
-                  value={replyContent}
-                  onChange={(e) => setReplyContent(e.target.value)}
-                  placeholder="Write your reply..."
-                  className="thread-input"
-                  rows={4}
-                  style={{ resize: 'vertical' }}
-                />
-                <button className="btn-post-reply" onClick={handleReply}>
-                  Post Reply
-                </button>
-              </div>
+              {/* Reply Form - Only for Instructors/Admins */}
+              {['instructor', 'admin'].includes(user?.role) ? (
+                <div className="reply-form">
+                  <h4>Write a Reply</h4>
+                  <textarea
+                    value={replyContent}
+                    onChange={(e) => setReplyContent(e.target.value)}
+                    placeholder="Write your reply..."
+                    className="thread-input"
+                    rows={4}
+                    style={{ resize: 'vertical' }}
+                  />
+                  <button className="btn-post-reply" onClick={handleReply}>
+                    Post Reply
+                  </button>
+                </div>
+              ) : (
+                <div className="reply-restricted-message">
+                  <p><em>Only instructors can reply to this discussion.</em></p>
+                </div>
+              )}
             </div>
           </div>
         </div>

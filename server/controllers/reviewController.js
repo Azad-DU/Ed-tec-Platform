@@ -109,6 +109,23 @@ const createReview = async (req, res) => {
     });
   } catch (error) {
     console.error('Create review error:', error);
+
+    // DEBUG: Inspect actual table columns
+    try {
+      const [cols] = await promisePool.query("SHOW COLUMNS FROM reviews");
+      const columnNames = cols.map(c => c.Field).join(', ');
+      console.log('[DEBUG] Actual reviews columns:', columnNames);
+
+      res.status(500).json({
+        success: false,
+        message: `Failed: ${error.message}. Actual columns: [${columnNames}]`,
+        error: error.message
+      });
+      return;
+    } catch (inspectError) {
+      console.error('Inspection failed:', inspectError);
+    }
+
     res.status(500).json({
       success: false,
       message: `Failed to create review: ${error.message}`,

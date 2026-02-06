@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
+  host: 'localhost', // Force localhost
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'edtech_platform'
@@ -11,17 +11,14 @@ const dbConfig = {
 async function checkSchema() {
   try {
     const connection = await mysql.createConnection(dbConfig);
-    console.log('Connected to database.');
-
-    const [columns] = await connection.query("SHOW COLUMNS FROM reviews LIKE 'comment'");
-    console.log('Comment column check:', JSON.stringify(columns, null, 2));
+    console.log(`Connected to database at ${dbConfig.host}`);
 
     const [allColumns] = await connection.query("SHOW COLUMNS FROM reviews");
     console.log('All columns:', JSON.stringify(allColumns.map(c => c.Field), null, 2));
 
     await connection.end();
   } catch (error) {
-    console.error('Error checking schema:', error);
+    console.error('Error checking schema:', error.message);
   }
 }
 

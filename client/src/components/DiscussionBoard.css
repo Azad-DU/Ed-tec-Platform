@@ -680,18 +680,30 @@
   }
 
   .discussion-filters {
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px; /* For scrollbar space if needed */
   }
 
   .filter-group {
-    flex-direction: column;
+    flex-direction: column; 
     align-items: flex-start;
-    width: 100%;
+    min-width: 140px; /* Ensure they don't squish too much */
+    flex: 1;
+  }
+
+  .filter-group label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
   }
 
   .filter-group select {
     width: 100%;
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 
   .thread-detail-header {

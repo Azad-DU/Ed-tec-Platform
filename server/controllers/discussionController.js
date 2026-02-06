@@ -114,7 +114,14 @@ const createReply = async (req, res) => {
     const user_id = req.user.user_id;
 
     // Check if user is instructor or admin
-    const is_instructor_reply = ['instructor', 'admin'].includes(req.user.role);
+    if (!['instructor', 'admin'].includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: 'Only instructors and admins can reply to discussions'
+      });
+    }
+
+    const is_instructor_reply = true;
 
     const [result] = await promisePool.query(
       'INSERT INTO discussion_replies (discussion_id, user_id, content, is_instructor_reply) VALUES (?, ?, ?, ?)',
