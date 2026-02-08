@@ -19,7 +19,7 @@ async function debugReviews() {
     console.log('\n--- Testing getAllReviews Query ---');
     // This is the exact query from the controller
     const [joinedBase] = await connection.query(
-      `SELECT r.review_id, r.rating, r.review_text,
+      `SELECT r.review_id, r.rating, r.comment as review_text,
               u.full_name, c.title as course_title
        FROM reviews r
        LEFT JOIN users u ON r.user_id = u.user_id

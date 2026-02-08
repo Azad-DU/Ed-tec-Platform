@@ -9,7 +9,7 @@ const getCourseReviews = async (req, res) => {
 
     // Get all reviews with user info
     const [reviews] = await promisePool.query(
-      `SELECT r.review_id, r.rating, r.review_text, r.created_at, r.updated_at,
+      `SELECT r.review_id, r.rating, r.comment as review_text, r.created_at, r.updated_at,
               u.user_id, u.full_name, u.role
        FROM reviews r
        JOIN users u ON r.user_id = u.user_id
@@ -94,7 +94,7 @@ const createReview = async (req, res) => {
 
     // Create the review
     const [result] = await promisePool.query(
-      'INSERT INTO reviews (course_id, user_id, rating, review_text) VALUES (?, ?, ?, ?)',
+      'INSERT INTO reviews (course_id, user_id, rating, comment) VALUES (?, ?, ?, ?)',
       [courseId, user_id, rating, review_text || null]
     );
 
@@ -173,8 +173,8 @@ const updateReview = async (req, res) => {
     }
 
     await promisePool.query(
-      'UPDATE reviews SET rating = ?, review_text = ?, updated_at = CURRENT_TIMESTAMP WHERE review_id = ?',
-      [rating || review[0].rating, review_text !== undefined ? review_text : review[0].review_text, reviewId]
+      'UPDATE reviews SET rating = ?, comment = ?, updated_at = CURRENT_TIMESTAMP WHERE review_id = ?',
+      [rating || review[0].rating, review_text !== undefined ? review_text : review[0].comment, reviewId]
     );
 
     res.json({
@@ -245,7 +245,7 @@ const getUserReview = async (req, res) => {
     const user_id = req.user.user_id;
 
     const [review] = await promisePool.query(
-      'SELECT * FROM reviews WHERE user_id = ? AND course_id = ?',
+      'SELECT review_id, course_id, user_id, rating, comment as review_text, created_at, updated_at FROM reviews WHERE user_id = ? AND course_id = ?',
       [user_id, courseId]
     );
 
@@ -272,7 +272,7 @@ const getAllReviews = async (req, res) => {
 
     // Get recent high-rated reviews (4 or 5 stars)
     const [reviews] = await promisePool.query(
-      `SELECT r.review_id, r.rating, r.review_text, r.created_at,
+      `SELECT r.review_id, r.rating, r.comment as review_text, r.created_at,
               u.full_name, u.role, u.avatar_url as profile_picture_url,
               c.title as course_title, c.course_id
        FROM reviews r

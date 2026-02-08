@@ -246,8 +246,8 @@ CREATE TABLE discussion_replies (
     INDEX idx_user (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Insert sample admin user (password: admin123 - hashed with bcrypt)
--- Note: In production, change this immediately
+-- Insert sample admin user - password should be set during setup
+-- Note: In production, create this user via secure script
 INSERT INTO users (email, password_hash, full_name, role) VALUES 
 ('admin@edtech.bd', '$2b$10$YourHashedPasswordHere', 'Admin User', 'admin');
 -- Reviews table: Course ratings and reviews

@@ -5,6 +5,7 @@ const { verifyToken, isInstructor } = require('../middleware/auth');
 
 // Protected routes
 router.get('/modules/:module_id', verifyToken, discussionController.getDiscussions);
+router.get('/:discussion_id', verifyToken, discussionController.getDiscussionById); // ADDED
 router.post('/', verifyToken, discussionController.createDiscussion);
 router.get('/:discussion_id/replies', verifyToken, discussionController.getDiscussionReplies);
 router.post('/:discussion_id/replies', verifyToken, discussionController.createReply);

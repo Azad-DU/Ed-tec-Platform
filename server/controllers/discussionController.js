@@ -44,6 +44,59 @@ const getDiscussions = async (req, res) => {
 };
 
 /**
+ * Get single discussion by ID with replies
+ */
+const getDiscussionById = async (req, res) => {
+  try {
+    const { discussion_id } = req.params;
+
+    // Get discussion details
+    const [discussions] = await promisePool.query(
+      `SELECT d.discussion_id, d.title, d.content, d.is_qa, d.is_resolved, d.created_at,
+              d.user_id, u.full_name as author_name, u.role as author_role
+       FROM discussions d
+       JOIN users u ON d.user_id = u.user_id
+       WHERE d.discussion_id = ?`,
+      [discussion_id]
+    );
+
+    if (discussions.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Discussion not found'
+      });
+    }
+
+    const discussion = discussions[0];
+
+    // Get replies
+    const [replies] = await promisePool.query(
+      `SELECT dr.reply_id, dr.content, dr.is_instructor_reply, dr.created_at,
+              u.full_name as author_name, u.role as author_role
+       FROM discussion_replies dr
+       JOIN users u ON dr.user_id = u.user_id
+       WHERE dr.discussion_id = ?
+       ORDER BY dr.created_at ASC`,
+      [discussion_id]
+    );
+
+    discussion.replies = replies;
+
+    res.json({
+      success: true,
+      data: discussion
+    });
+  } catch (error) {
+    console.error('Get discussion details error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve discussion details',
+      error: error.message
+    });
+  }
+};
+
+/**
  * Create new discussion
  */
 const createDiscussion = async (req, res) => {
@@ -181,6 +234,7 @@ const markAsResolved = async (req, res) => {
 
 module.exports = {
   getDiscussions,
+  getDiscussionById,
   createDiscussion,
   getDiscussionReplies,
   createReply,

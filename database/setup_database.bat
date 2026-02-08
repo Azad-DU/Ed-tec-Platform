@@ -77,13 +77,7 @@ echo [OK] Schema imported successfully
 echo.
 
 REM Create test users
-echo Creating test users...
-%MYSQL_PATH% -u root edtech_platform -e "INSERT INTO users (email, password_hash, full_name, role) VALUES ('admin@edtech.bd', '$2b$10$rBV2kVq7hC0xJ.6PZFJv7uQvWYp8YqKGZxGvKrXvMxHYxPFJvYxqO', 'Admin User', 'admin'), ('student@edtech.bd', '$2b$10$rBV2kVq7hC0xJ.6PZFJv7uQvWYp8YqKGZxGvKrXvMxHYxPFJvYxqO', 'Demo Student', 'student'), ('instructor@edtech.bd', '$2b$10$rBV2kVq7hC0xJ.6PZFJv7uQvWYp8YqKGZxGvKrXvMxHYxPFJvYxqO', 'Demo Instructor', 'instructor');"
-if errorlevel 1 (
-    echo [WARNING] Test users may already exist (this is OK)
-) else (
-    echo [OK] Test users created
-)
+echo [INFO] Skipping test user creation for security (Please use `node server/scripts/update_admin_password.js` to set admin password)
 echo.
 
 REM Verify setup
@@ -91,21 +85,3 @@ echo Verifying setup...
 %MYSQL_PATH% -u root edtech_platform -e "SELECT COUNT(*) as table_count FROM information_schema.tables WHERE table_schema = 'edtech_platform';"
 echo.
 
-echo ================================================================
-echo SUCCESS! Database setup complete!
-echo ================================================================
-echo.
-echo Test Login Credentials:
-echo   Email: student@edtech.bd
-echo   Password: password123
-echo.
-echo   Email: admin@edtech.bd
-echo   Password: admin123
-echo.
-echo Next Steps:
-echo 1. Restart your backend server (Ctrl+C then: npm run dev)
-echo 2. Visit http://localhost:3000
-echo 3. Click "Login" and use credentials above
-echo.
-echo ================================================================
-pause

@@ -22,7 +22,7 @@ async function debugReviews() {
     console.log('\n--- Running Controller Query ---');
     try {
       const [reviews] = await connection.query(
-        `SELECT r.review_id, r.rating, r.review_text, r.created_at,
+        `SELECT r.review_id, r.rating, r.comment as review_text, r.created_at,
                 u.full_name, u.role, u.profile_picture_url,
                 c.title as course_title, c.course_id
         FROM reviews r
