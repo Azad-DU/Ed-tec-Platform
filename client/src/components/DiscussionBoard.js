@@ -8,11 +8,13 @@ const DiscussionBoard = ({ moduleId }) => {
   const [discussions, setDiscussions] = useState([]);
   const [selectedDiscussion, setSelectedDiscussion] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [filterType, setFilterType] = useState('all'); // all, qa, discussion
-  const [sortBy, setSortBy] = useState('recent'); // recent, replies, resolved
+  const [filterType, setFilterType] = useState('all');
+  const [sortBy, setSortBy] = useState('recent');
   const [showNewThread, setShowNewThread] = useState(false);
-  const [newThread, setNewThread] = useState({ title: '', content: '', is_qa: false });
+  const [newThread, setNewThread] = useState({ content: '', is_qa: true });
   const [replyContent, setReplyContent] = useState('');
+  const [editMode, setEditMode] = useState(false);
+  const [editContent, setEditContent] = useState('');
   const { user } = useAuth();
 
   useEffect(() => {
@@ -33,21 +35,24 @@ const DiscussionBoard = ({ moduleId }) => {
   };
 
   const handleCreateThread = async () => {
-    if (!newThread.title.trim() || !newThread.content.trim()) {
-      alert('Please provide both title and content');
+    if (!newThread.content.trim()) {
+      alert('Please write your question or discussion');
       return;
     }
+
+    // Auto-generate title from first 60 characters of content
+    const autoTitle = newThread.content.trim().substring(0, 60) + (newThread.content.length > 60 ? '...' : '');
 
     try {
       const response = await discussionAPI.createDiscussion({
         module_id: moduleId,
-        title: newThread.title,
+        title: autoTitle,
         content: newThread.content,
         is_qa: newThread.is_qa,
       });
 
       if (response.data.success) {
-        setNewThread({ title: '', content: '', is_qa: false });
+        setNewThread({ content: '', is_qa: true });
         setShowNewThread(false);
         fetchDiscussions();
       }
@@ -90,9 +95,62 @@ const DiscussionBoard = ({ moduleId }) => {
       const response = await discussionAPI.getDiscussionById(discussionId);
       if (response.data.success) {
         setSelectedDiscussion(response.data.data);
+        setEditMode(false);
       }
     } catch (error) {
       console.error('Failed to load discussion:', error);
+    }
+  };
+
+  // Check if user can edit/delete this discussion
+  const canEditDelete = (discussion) => {
+    if (!user) return false;
+    const isOwner = user.user_id === discussion.user_id;
+    const isPrivileged = ['admin', 'instructor'].includes(user.role);
+    return isOwner || isPrivileged;
+  };
+
+  const handleEditClick = () => {
+    setEditContent(selectedDiscussion.content);
+    setEditMode(true);
+  };
+
+  const handleUpdateDiscussion = async () => {
+    if (!editContent.trim()) {
+      alert('Content cannot be empty');
+      return;
+    }
+
+    const autoTitle = editContent.trim().substring(0, 60) + (editContent.length > 60 ? '...' : '');
+
+    try {
+      const response = await discussionAPI.updateDiscussion(selectedDiscussion.discussion_id, {
+        title: autoTitle,
+        content: editContent
+      });
+      if (response.data.success) {
+        setEditMode(false);
+        loadDiscussionDetail(selectedDiscussion.discussion_id);
+        fetchDiscussions();
+      }
+    } catch (error) {
+      console.error('Failed to update discussion:', error);
+      alert(error.response?.data?.message || 'Failed to update discussion');
+    }
+  };
+
+  const handleDeleteDiscussion = async () => {
+    if (!window.confirm('Are you sure you want to delete this discussion? This will also delete all replies.')) return;
+
+    try {
+      const response = await discussionAPI.deleteDiscussion(selectedDiscussion.discussion_id);
+      if (response.data.success) {
+        setSelectedDiscussion(null);
+        fetchDiscussions();
+      }
+    } catch (error) {
+      console.error('Failed to delete discussion:', error);
+      alert(error.response?.data?.message || 'Failed to delete discussion');
     }
   };
 
@@ -130,12 +188,12 @@ const DiscussionBoard = ({ moduleId }) => {
   return (
     <div className="discussion-board-container">
       {!selectedDiscussion ? (
-        // Thread List View
         <div className="thread-list-view">
+          {/* Compact Header */}
           <div className="discussion-header">
-            <h2>💬 Discussion Board</h2>
+            <h2>💬 Board</h2>
             <button className="btn-new-thread" onClick={() => setShowNewThread(true)}>
-              + New Thread
+              + Ask Question
             </button>
           </div>
 
@@ -193,12 +251,12 @@ const DiscussionBoard = ({ moduleId }) => {
             )}
           </div>
 
-          {/* New Thread Modal */}
+          {/* New Thread Modal - Simplified */}
           {showNewThread && (
             <div className="modal-overlay" onClick={() => setShowNewThread(false)}>
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                  <h3>Create New Thread</h3>
+                  <h3>Ask a Question</h3>
                   <button className="modal-close" onClick={() => setShowNewThread(false)}>
                     ✕
                   </button>
@@ -206,52 +264,31 @@ const DiscussionBoard = ({ moduleId }) => {
 
                 <div className="modal-body">
                   <div className="form-group">
-                    <label>Title</label>
-                    <input
-                      type="text"
-                      value={newThread.title}
-                      onChange={(e) => setNewThread({ ...newThread, title: e.target.value })}
-                      placeholder="Enter thread title..."
-                      className="thread-input"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>Content</label>
                     <textarea
                       value={newThread.content}
                       onChange={(e) => setNewThread({ ...newThread, content: e.target.value })}
-                      placeholder="Write your question or discussion topic..."
-                      className="thread-input"
-                      rows={6}
-                      style={{ resize: 'vertical' }}
+                      placeholder="Type your question here..."
+                      className="thread-input thread-textarea"
+                      rows={5}
+                      autoFocus
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label>Thread Type</label>
-                    <div className="thread-type-options" style={{ display: 'flex', gap: '20px' }}>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'normal' }}>
-                        <input
-                          type="radio"
-                          name="threadType"
-                          checked={!newThread.is_qa}
-                          onChange={() => setNewThread({ ...newThread, is_qa: false })}
-                          style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
-                        />
-                        <span>General Discussion</span>
-                      </label>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 'normal' }}>
-                        <input
-                          type="radio"
-                          name="threadType"
-                          checked={newThread.is_qa}
-                          onChange={() => setNewThread({ ...newThread, is_qa: true })}
-                          style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
-                        />
-                        <span>Ask a Question</span>
-                      </label>
-                    </div>
+                  <div className="thread-type-toggle">
+                    <button
+                      type="button"
+                      className={`type-btn ${newThread.is_qa ? 'active' : ''}`}
+                      onClick={() => setNewThread({ ...newThread, is_qa: true })}
+                    >
+                      ❓ Question
+                    </button>
+                    <button
+                      type="button"
+                      className={`type-btn ${!newThread.is_qa ? 'active' : ''}`}
+                      onClick={() => setNewThread({ ...newThread, is_qa: false })}
+                    >
+                      💬 Discussion
+                    </button>
                   </div>
                 </div>
 
@@ -260,7 +297,7 @@ const DiscussionBoard = ({ moduleId }) => {
                     Cancel
                   </button>
                   <button className="btn-submit" onClick={handleCreateThread}>
-                    Create Thread
+                    Post
                   </button>
                 </div>
               </div>
@@ -312,27 +349,27 @@ const DiscussionBoard = ({ moduleId }) => {
                 ))}
               </div>
 
-              {/* Facebook-style Reply Action */}
-              {['instructor', 'admin'].includes(user?.role) && (
-                <div className="post-actions" style={{ marginTop: '15px', borderTop: '1px solid #eee', paddingTop: '10px' }}>
+              {/* Edit/Delete/Reply Actions */}
+              <div className="post-actions">
+                {canEditDelete(selectedDiscussion) && (
+                  <>
+                    <button className="btn-edit-thread" onClick={handleEditClick}>
+                      ✏️ Edit
+                    </button>
+                    <button className="btn-delete-thread" onClick={handleDeleteDiscussion}>
+                      🗑️ Delete
+                    </button>
+                  </>
+                )}
+                {['instructor', 'admin'].includes(user?.role) && (
                   <button
                     className="btn-text-reply"
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#65676b',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '5px'
-                    }}
                     onClick={() => document.querySelector('.reply-form textarea')?.focus()}
                   >
                     ↩ Reply
                   </button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             {/* Replies */}

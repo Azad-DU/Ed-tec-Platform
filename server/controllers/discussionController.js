@@ -232,11 +232,130 @@ const markAsResolved = async (req, res) => {
   }
 };
 
+/**
+ * Update discussion (creator, admin, or instructor only)
+ */
+const updateDiscussion = async (req, res) => {
+  try {
+    const { discussion_id } = req.params;
+    const { title, content } = req.body;
+    const user_id = req.user.user_id;
+    const user_role = req.user.role;
+
+    // Get the discussion to check ownership
+    const [discussions] = await promisePool.query(
+      'SELECT user_id FROM discussions WHERE discussion_id = ?',
+      [discussion_id]
+    );
+
+    if (discussions.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Discussion not found'
+      });
+    }
+
+    const discussion = discussions[0];
+
+    // Check permission: creator, admin, or instructor
+    const isOwner = discussion.user_id === user_id;
+    const isPrivileged = ['admin', 'instructor'].includes(user_role);
+
+    if (!isOwner && !isPrivileged) {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have permission to edit this discussion'
+      });
+    }
+
+    await promisePool.query(
+      'UPDATE discussions SET title = ?, content = ? WHERE discussion_id = ?',
+      [title, content, discussion_id]
+    );
+
+    res.json({
+      success: true,
+      message: 'Discussion updated successfully'
+    });
+  } catch (error) {
+    console.error('Update discussion error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update discussion',
+      error: error.message
+    });
+  }
+};
+
+/**
+ * Delete discussion (creator, admin, or instructor only)
+ */
+const deleteDiscussion = async (req, res) => {
+  try {
+    const { discussion_id } = req.params;
+    const user_id = req.user.user_id;
+    const user_role = req.user.role;
+
+    // Get the discussion to check ownership
+    const [discussions] = await promisePool.query(
+      'SELECT user_id FROM discussions WHERE discussion_id = ?',
+      [discussion_id]
+    );
+
+    if (discussions.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Discussion not found'
+      });
+    }
+
+    const discussion = discussions[0];
+
+    // Check permission: creator, admin, or instructor
+    const isOwner = discussion.user_id === user_id;
+    const isPrivileged = ['admin', 'instructor'].includes(user_role);
+
+    if (!isOwner && !isPrivileged) {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have permission to delete this discussion'
+      });
+    }
+
+    // Delete replies first (foreign key constraint)
+    await promisePool.query(
+      'DELETE FROM discussion_replies WHERE discussion_id = ?',
+      [discussion_id]
+    );
+
+    // Delete the discussion
+    await promisePool.query(
+      'DELETE FROM discussions WHERE discussion_id = ?',
+      [discussion_id]
+    );
+
+    res.json({
+      success: true,
+      message: 'Discussion deleted successfully'
+    });
+  } catch (error) {
+    console.error('Delete discussion error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to delete discussion',
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   getDiscussions,
   getDiscussionById,
   createDiscussion,
   getDiscussionReplies,
   createReply,
-  markAsResolved
+  markAsResolved,
+  updateDiscussion,
+  deleteDiscussion
 };
+

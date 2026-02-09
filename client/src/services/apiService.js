@@ -59,6 +59,8 @@ export const discussionAPI = {
   getDiscussions: (moduleId) => apiClient.get(`/discussions/modules/${moduleId}`),
   getDiscussionById: (discussionId) => apiClient.get(`/discussions/${discussionId}`),
   createDiscussion: (data) => apiClient.post('/discussions', data),
+  updateDiscussion: (discussionId, data) => apiClient.put(`/discussions/${discussionId}`, data),
+  deleteDiscussion: (discussionId) => apiClient.delete(`/discussions/${discussionId}`),
   createReply: (discussionId, content) => apiClient.post(`/discussions/${discussionId}/replies`, { content }),
   markAsResolved: (discussionId) => apiClient.put(`/discussions/${discussionId}/resolve`),
 };
