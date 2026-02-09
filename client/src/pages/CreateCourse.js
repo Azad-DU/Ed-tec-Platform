@@ -86,7 +86,7 @@ const CreateCourse = () => {
   return (
     <div className="create-course-container">
       <div className="create-course-card">
-        <h1>📚 Create New Course</h1>
+        <h1> Create New Course</h1>
         <p className="subtitle">Fill in the details to create a new course</p>
 
         {error && <div className="error-message">{error}</div>}

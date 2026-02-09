@@ -131,7 +131,7 @@ const EditCourse = () => {
   return (
     <div className="create-course-container">
       <div className="create-course-card">
-        <h1>✏️ Edit Course</h1>
+        <h1> Edit Course</h1>
         <p className="subtitle">Update course details</p>
 
         {error && <div className="error-message">{error}</div>}
