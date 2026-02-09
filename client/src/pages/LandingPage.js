@@ -9,6 +9,7 @@ const LandingPage = () => {
   const [reviews, setReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
   const scrollRef = React.useRef(null);
+  const courseScrollRef = React.useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,6 +64,27 @@ const LandingPage = () => {
 
     return () => clearInterval(intervalId);
   }, [reviews]);
+
+  // Auto-scroll effect for courses
+  useEffect(() => {
+    const scrollContainer = courseScrollRef.current;
+    if (!scrollContainer || popularCourses.length === 0) return;
+
+    const scrollWidth = scrollContainer.scrollWidth;
+    let currentScroll = 0;
+
+    const intervalId = setInterval(() => {
+      if (currentScroll >= scrollWidth - scrollContainer.clientWidth) {
+        currentScroll = 0;
+        scrollContainer.scrollTo({ left: 0, behavior: 'instant' });
+      } else {
+        currentScroll += 380;
+        scrollContainer.scrollTo({ left: currentScroll, behavior: 'smooth' });
+      }
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [popularCourses]);
 
   const features = [
     {
@@ -180,7 +202,7 @@ const LandingPage = () => {
             <div className="relative hidden sm:block lg:block">
               <div className="relative z-10">
                 <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=600&fit=crop"
+                  src="/hero-image.jpg"
                   alt="Students learning"
                   className="rounded-2xl lg:rounded-3xl shadow-2xl transform hover:rotate-1 lg:hover:rotate-2 transition-transform duration-300 w-full max-h-80 sm:max-h-96 lg:max-h-none object-cover"
                 />
@@ -271,11 +293,15 @@ const LandingPage = () => {
               <p className="text-gray-600 dark:text-gray-400 text-lg">No courses available yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              ref={courseScrollRef}
+              className="flex gap-6 overflow-x-auto pb-8 snap-mandatory snap-x hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
               {popularCourses.map((course) => (
                 <div
                   key={course.course_id}
-                  className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                  className="min-w-[300px] sm:min-w-[340px] md:min-w-[380px] flex-shrink-0 group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer snap-center"
                   onClick={() => navigate(`/course/${course.course_id}`)}
                 >
                   <div className="relative overflow-hidden">
