@@ -444,3 +444,86 @@
     justify-content: center;
   }
 }
+
+/* ========================================
+   LIGHT MODE OVERRIDES
+======================================== */
+
+:root:not(.dark) .reviews-header,
+html:not(.dark) .reviews-header {
+  background: #f8fafc;
+  border-color: #e5e7eb;
+}
+
+:root:not(.dark) .reviews-title h2,
+html:not(.dark) .reviews-title h2 {
+  color: #111827;
+}
+
+:root:not(.dark) .reviews-count,
+html:not(.dark) .reviews-count {
+  color: #6b7280;
+}
+
+:root:not(.dark) .your-review h3,
+html:not(.dark) .your-review h3,
+:root:not(.dark) .review-form-container h3,
+html:not(.dark) .review-form-container h3,
+:root:not(.dark) .reviews-list h3,
+html:not(.dark) .reviews-list h3 {
+  color: #111827;
+}
+
+:root:not(.dark) .review-card,
+html:not(.dark) .review-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+:root:not(.dark) .review-card:hover,
+html:not(.dark) .review-card:hover {
+  border-color: #d1d5db;
+}
+
+:root:not(.dark) .your-review-card,
+html:not(.dark) .your-review-card {
+  background: rgba(16, 185, 129, 0.05);
+}
+
+:root:not(.dark) .reviewer-name,
+html:not(.dark) .reviewer-name {
+  color: #111827;
+}
+
+:root:not(.dark) .review-date,
+html:not(.dark) .review-date {
+  color: #6b7280;
+}
+
+:root:not(.dark) .review-text,
+html:not(.dark) .review-text {
+  color: #374151;
+}
+
+:root:not(.dark) .review-form textarea,
+html:not(.dark) .review-form textarea {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+:root:not(.dark) .review-form textarea:focus,
+html:not(.dark) .review-form textarea:focus {
+  border-color: #10b981;
+}
+
+:root:not(.dark) .star.empty,
+html:not(.dark) .star.empty {
+  color: #d1d5db;
+}
+
+:root:not(.dark) .empty-reviews,
+html:not(.dark) .empty-reviews {
+  color: #6b7280;
+}

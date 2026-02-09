@@ -755,3 +755,152 @@
     justify-content: center;
   }
 }
+
+/* ========================================
+   LIGHT MODE OVERRIDES
+======================================== */
+
+/* Light mode - when html doesn't have dark class */
+:root:not(.dark) .discussion-header h2,
+html:not(.dark) .discussion-header h2 {
+  color: #1f2937;
+}
+
+:root:not(.dark) .discussion-filters,
+html:not(.dark) .discussion-filters {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:root:not(.dark) .filter-group label,
+html:not(.dark) .filter-group label {
+  color: #64748b;
+}
+
+:root:not(.dark) .filter-group select,
+html:not(.dark) .filter-group select {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+:root:not(.dark) .thread-card,
+html:not(.dark) .thread-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+:root:not(.dark) .thread-card:hover,
+html:not(.dark) .thread-card:hover {
+  background: #f8fafc;
+  border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+:root:not(.dark) .thread-title,
+html:not(.dark) .thread-title {
+  color: #111827;
+}
+
+:root:not(.dark) .thread-meta,
+html:not(.dark) .thread-meta {
+  color: #6b7280;
+}
+
+:root:not(.dark) .thread-detail-card,
+html:not(.dark) .thread-detail-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+}
+
+:root:not(.dark) .thread-detail-header,
+html:not(.dark) .thread-detail-header {
+  background: #f8fafc;
+  border-bottom-color: #e5e7eb;
+}
+
+:root:not(.dark) .thread-detail-title-section h2,
+html:not(.dark) .thread-detail-title-section h2 {
+  color: #111827;
+}
+
+:root:not(.dark) .original-post,
+html:not(.dark) .original-post {
+  background: #ffffff;
+}
+
+:root:not(.dark) .post-author-info,
+html:not(.dark) .post-author-info {
+  color: #6b7280;
+}
+
+:root:not(.dark) .author-name,
+html:not(.dark) .author-name {
+  color: #111827;
+}
+
+:root:not(.dark) .post-content,
+html:not(.dark) .post-content {
+  color: #374151;
+}
+
+:root:not(.dark) .replies-section h3,
+html:not(.dark) .replies-section h3 {
+  color: #111827;
+}
+
+:root:not(.dark) .reply-card,
+html:not(.dark) .reply-card {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+:root:not(.dark) .reply-author,
+html:not(.dark) .reply-author {
+  color: #111827;
+}
+
+:root:not(.dark) .reply-content,
+html:not(.dark) .reply-content {
+  color: #374151;
+}
+
+:root:not(.dark) .reply-form textarea,
+html:not(.dark) .reply-form textarea,
+:root:not(.dark) .thread-input,
+html:not(.dark) .thread-input,
+:root:not(.dark) .thread-textarea,
+html:not(.dark) .thread-textarea {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+:root:not(.dark) .modal-content,
+html:not(.dark) .modal-content {
+  background: #ffffff;
+  border-color: #e5e7eb;
+}
+
+:root:not(.dark) .modal-header h3,
+html:not(.dark) .modal-header h3 {
+  color: #111827;
+}
+
+:root:not(.dark) .empty-state,
+html:not(.dark) .empty-state {
+  color: #6b7280;
+}
+
+:root:not(.dark) .btn-back,
+html:not(.dark) .btn-back {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #e5e7eb;
+}
+
+:root:not(.dark) .btn-back:hover,
+html:not(.dark) .btn-back:hover {
+  background: #e5e7eb;
+}
