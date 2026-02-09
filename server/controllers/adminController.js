@@ -1,24 +1,28 @@
 const multer = require('multer');
 const path = require('path');
 const { promisePool } = require('../config/database');
+const { uploadToCloudinary } = require('../config/cloudinary');
 
 // Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // Save to server/uploads using absolute path relative to this controller file
-    const uploadDir = path.join(__dirname, '../uploads');
-    // Ensure directory exists
-    const fs = require('fs');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+// Use memory storage for Cloudinary uploads, disk storage for local fallback
+const storage = process.env.CLOUDINARY_CLOUD_NAME
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+    destination: (req, file, cb) => {
+      // Save to server/uploads using absolute path relative to this controller file
+      const uploadDir = path.join(__dirname, '../uploads');
+      // Ensure directory exists
+      const fs = require('fs');
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+      cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+      const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
+      cb(null, uniqueName);
     }
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
-    cb(null, uniqueName);
-  }
-});
+  });
 
 const upload = multer({
   storage,
@@ -513,7 +517,7 @@ const fs = require('fs').promises;
 // ... existing code ...
 
 /**
- * Upload general file
+ * Upload general file - uses Cloudinary if configured, otherwise local storage
  */
 const uploadFile = async (req, res) => {
   if (!req.file) {
@@ -523,49 +527,79 @@ const uploadFile = async (req, res) => {
     });
   }
 
-  console.log('[DEBUG] File uploaded:', req.file);
+  console.log('[DEBUG] File uploaded:', req.file.originalname, req.file.mimetype);
 
   try {
-    // Process image if it is an image type
-    if (req.file.mimetype.startsWith('image/')) {
-      const filePath = req.file.path;
-      // Use original path for optimization to avoid complexity for now, or just skip if simple
-      // For now, let's just log
+    let fileUrl;
+
+    // Check if Cloudinary is configured
+    if (process.env.CLOUDINARY_CLOUD_NAME) {
+      console.log('[DEBUG] Uploading to Cloudinary...');
+
+      // Determine folder and resource type based on mimetype
+      let folder = 'edtech-uploads';
+      let resourceType = 'auto';
+
+      if (req.file.mimetype.startsWith('image/')) {
+        folder = 'edtech-uploads/images';
+        resourceType = 'image';
+      } else if (req.file.mimetype.startsWith('video/')) {
+        folder = 'edtech-uploads/videos';
+        resourceType = 'video';
+      } else {
+        folder = 'edtech-uploads/documents';
+        resourceType = 'raw';
+      }
+
+      // Upload to Cloudinary
+      const result = await uploadToCloudinary(req.file.buffer, {
+        folder,
+        resource_type: resourceType,
+        public_id: `${Date.now()}-${Math.round(Math.random() * 1E9)}`,
+      });
+
+      fileUrl = result.secure_url;
+      console.log('[DEBUG] Cloudinary upload success:', fileUrl);
+
+    } else {
+      // Fallback to local storage (for development)
+      console.log('[DEBUG] Using local storage fallback...');
+
+      let baseUrl = process.env.API_URL;
+
+      if (!baseUrl) {
+        let protocol = req.protocol;
+        const host = req.get('host');
+
+        // Force HTTPS on Render/Production if not localhost
+        if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
+          protocol = 'https';
+        }
+        baseUrl = `${protocol}://${host}`;
+      }
+
+      baseUrl = baseUrl.replace(/\/$/, '');
+      fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
     }
+
+    console.log('[DEBUG] Generated file URL:', fileUrl);
+
+    res.json({
+      success: true,
+      message: 'File uploaded successfully',
+      data: {
+        url: fileUrl
+      }
+    });
+
   } catch (error) {
-    console.error('Image optimization failed:', error);
-    // Continue even if optimization fails, serving original file
+    console.error('[ERROR] File upload failed:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to upload file',
+      error: error.message
+    });
   }
-
-  // Construct public URL using request headers or env var
-  let baseUrl = process.env.API_URL;
-
-  if (!baseUrl) {
-    // Fallback if API_URL not set
-    let protocol = req.protocol;
-    const host = req.get('host');
-
-    // Force HTTPS on Render/Production if not localhost
-    if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
-      protocol = 'https';
-    }
-    baseUrl = `${protocol}://${host}`;
-  }
-
-  // Ensure no trailing slash in baseUrl
-  baseUrl = baseUrl.replace(/\/$/, '');
-
-  const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
-
-  console.log('[DEBUG] Generated file URL:', fileUrl);
-
-  res.json({
-    success: true,
-    message: 'File uploaded successfully',
-    data: {
-      url: fileUrl
-    }
-  });
 };
 
 module.exports = {

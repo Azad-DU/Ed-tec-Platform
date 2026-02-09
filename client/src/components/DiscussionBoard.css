@@ -666,7 +666,8 @@
 
   .thread-list-view,
   .thread-detail-view {
-    padding: 20px;
+    padding: 16px;
+    border-radius: 12px;
   }
 
   .discussion-header {
@@ -675,8 +676,14 @@
     gap: 16px;
   }
 
+  .discussion-header h2 {
+    font-size: 1.4rem;
+  }
+
   .btn-new-thread {
     width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 
   .discussion-filters {
@@ -684,33 +691,216 @@
     align-items: center;
     gap: 12px;
     overflow-x: auto;
-    padding-bottom: 12px; /* For scrollbar space if needed */
+    padding: 12px;
+    margin-bottom: 16px;
   }
 
   .filter-group {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: flex-start;
-    min-width: 140px; /* Ensure they don't squish too much */
+    min-width: 130px;
     flex: 1;
   }
 
   .filter-group label {
-    font-size: 0.85rem;
-    margin-bottom: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
     white-space: nowrap;
+    font-weight: 700;
   }
 
   .filter-group select {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     font-size: 0.9rem;
+    min-height: 44px;
   }
 
+  /* Thread badges - improved mobile layout */
+  .thread-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .badge-qa,
+  .badge-resolved {
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .thread-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .thread-title {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .thread-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Thread detail improvements */
   .thread-detail-header {
     flex-direction: column;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+  .thread-detail-title-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .thread-detail-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  /* Enhanced back button */
+  .btn-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .btn-back:hover {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: #10b981;
   }
 
   .btn-resolve {
     width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  /* Reply cards with accent border */
+  .reply-card {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-left: 4px solid #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%);
+  }
+
+  .dark .reply-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
+  }
+
+  .reply-author-info {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .author-name {
+    font-size: 0.9rem;
+  }
+
+  .instructor-badge {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+
+  .reply-content,
+  .post-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Replies section */
+  .replies-section {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  .replies-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  /* Reply form improvements */
+  .reply-form {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .reply-form h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .btn-post-reply {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+    min-height: 48px;
+    margin-top: 12px;
+  }
+
+  /* Quill editor mobile */
+  .ql-container {
+    min-height: 150px;
+    font-size: 0.95rem;
+  }
+
+  .ql-toolbar {
+    padding: 8px;
+  }
+
+  /* Modal improvements */
+  .modal-content {
+    border-radius: 16px;
+    margin: 16px;
+    max-height: calc(100vh - 32px);
+  }
+
+  .modal-header {
+    padding: 20px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modal-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .thread-input {
+    padding: 14px 16px;
+    font-size: 1rem;
   }
 }

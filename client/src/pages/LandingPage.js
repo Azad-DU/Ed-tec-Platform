@@ -127,8 +127,8 @@ const LandingPage = () => {
           <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-400 dark:bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-20 lg:pb-24">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Hero Text */}
             <div className="space-y-8 z-10">
               <div className="inline-flex items-center px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20">
@@ -136,16 +136,15 @@ const LandingPage = () => {
                 <span className="text-sm font-medium">Rated 4.8/5 by 6,894+ students</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
                 Transform Your Future with
                 <span className="block bg-gradient-to-r from-yellow-300 to-lime-300 bg-clip-text text-transparent mt-2">
                   Quality Education
                 </span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-emerald-100 dark:text-emerald-200 leading-relaxed">
-                Master all the courses you need to learn to complete your HSC level as a business background student. We deliver maximum value to you.Our platform is designed to help you overcome all the academic struggles as business background students.
-                .
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-100 dark:text-emerald-200 leading-relaxed">
+                Master all the courses you need to learn to complete your HSC level as a business background student. Our platform is designed to help you succeed.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -165,29 +164,29 @@ const LandingPage = () => {
                 </Link>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+              {/* Stats - 2x2 on mobile, 4 columns on desktop */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-6 sm:pt-8">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center transform hover:scale-110 transition-transform duration-300">
-                    <div className="text-4xl mb-2">{stat.icon}</div>
-                    <div className="text-3xl font-bold">{stat.number}</div>
-                    <div className="text-sm text-emerald-200 dark:text-emerald-300">{stat.label}</div>
+                  <div key={index} className="text-center transform hover:scale-105 transition-transform duration-300 bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl mb-1 sm:mb-2">{stat.icon}</div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold">{stat.number}</div>
+                    <div className="text-xs sm:text-sm text-emerald-200 dark:text-emerald-300">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Hero Image */}
-            <div className="relative lg:block">
+            {/* Hero Image - hidden on very small screens for better content focus */}
+            <div className="relative hidden sm:block lg:block">
               <div className="relative z-10">
                 <img
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=600&fit=crop"
                   alt="Students learning"
-                  className="rounded-3xl shadow-2xl transform hover:rotate-2 transition-transform duration-300"
+                  className="rounded-2xl lg:rounded-3xl shadow-2xl transform hover:rotate-1 lg:hover:rotate-2 transition-transform duration-300 w-full max-h-80 sm:max-h-96 lg:max-h-none object-cover"
                 />
 
-                {/* Floating Cards */}
-                <div className="absolute -top-8 -right-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4 animate-float">
+                {/* Floating Cards - hidden on mobile to prevent overflow */}
+                <div className="hidden lg:block absolute -top-8 -right-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4 animate-float">
                   <div className="flex items-center space-x-3">
                     <span className="text-4xl">📚</span>
                     <div>
@@ -197,7 +196,7 @@ const LandingPage = () => {
                   </div>
                 </div>
 
-                <div className="absolute -bottom-8 -left-8 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl shadow-2xl p-4 animate-float animation-delay-2000">
+                <div className="hidden lg:block absolute -bottom-8 -left-8 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl shadow-2xl p-4 animate-float animation-delay-2000">
                   <div className="flex items-center space-x-3 text-white">
                     <span className="text-4xl">⭐</span>
                     <div>
@@ -231,19 +230,19 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 rounded-2xl transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 rounded-xl sm:rounded-2xl transition-opacity duration-300`}></div>
                 <div className="relative z-10">
-                  <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-3xl sm:text-4xl lg:text-6xl mb-2 sm:mb-4 transform group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-base sm:text-lg lg:text-2xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-3">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3 sm:line-clamp-none">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -360,7 +359,7 @@ const LandingPage = () => {
       {/* Reviews Section - Modern Carousel */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Trusted by Students</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 sm:mb-12">Trusted by Students</h2>
 
           {loadingReviews ? (
             <div className="flex justify-center"><div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div></div>
@@ -373,9 +372,9 @@ const LandingPage = () => {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {reviews.map((review) => (
-                <div key={review.review_id} className="min-w-[300px] md:min-w-[400px] bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 snap-center">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img src={review.profile_picture_url || `https://ui-avatars.com/api/?name=${review.full_name}&background=random`} alt="" className="w-12 h-12 rounded-full bg-gray-100 object-cover" />
+                <div key={review.review_id} className="min-w-[260px] sm:min-w-[300px] md:min-w-[380px] bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 snap-center">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <img src={review.profile_picture_url || `https://ui-avatars.com/api/?name=${review.full_name}&background=random`} alt="" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 object-cover" />
                     <div>
                       <div className="font-bold text-gray-900 dark:text-white">{review.full_name}</div>
                       <div className="text-xs text-gray-500">{review.course_title}</div>
@@ -384,7 +383,7 @@ const LandingPage = () => {
                   <div className="flex text-amber-500 mb-3 text-sm">
                     {[...Array(5)].map((_, i) => <span key={i}>{i < review.rating ? '★' : '☆'}</span>)}
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-4">"{review.review_text}"</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-4">"{review.review_text}"</p>
                 </div>
               ))}
             </div>
@@ -428,8 +427,8 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="bg-white dark:bg-gray-950 pt-16 pb-8 border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Footer Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Footer Grid - Single column on mobile, 2x2 on tablet, 4 columns on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-12">
 
             {/* Brand & About */}
             <div className="lg:col-span-1">
