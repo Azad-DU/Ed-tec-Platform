@@ -321,13 +321,28 @@ const DiscussionBoard = ({ moduleId }) => {
                 </div>
               </div>
 
-              {selectedDiscussion.is_qa &&
-                !selectedDiscussion.is_resolved &&
-                (user?.user_id === selectedDiscussion.user_id || user?.role === 'instructor') && (
-                  <button className="btn-resolve" onClick={handleMarkResolved}>
-                    Mark as Resolved
-                  </button>
+              {/* Header Actions - Edit/Delete/Resolve */}
+              <div className="thread-header-actions">
+                {canEditDelete(selectedDiscussion) && (
+                  <>
+                    <button className="btn-icon-edit" onClick={handleEditClick} title="Edit">
+                      ✏️
+                    </button>
+                    <button className="btn-icon-delete" onClick={handleDeleteDiscussion} title="Delete">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                      </svg>
+                    </button>
+                  </>
                 )}
+                {selectedDiscussion.is_qa &&
+                  !selectedDiscussion.is_resolved &&
+                  (user?.user_id === selectedDiscussion.user_id || user?.role === 'instructor') && (
+                    <button className="btn-resolve" onClick={handleMarkResolved}>
+                      Mark as Resolved
+                    </button>
+                  )}
+              </div>
             </div>
 
 
@@ -348,29 +363,43 @@ const DiscussionBoard = ({ moduleId }) => {
                   <p key={idx} className="mb-2">{paragraph}</p>
                 ))}
               </div>
-
-              {/* Edit/Delete/Reply Actions */}
-              <div className="post-actions">
-                {canEditDelete(selectedDiscussion) && (
-                  <>
-                    <button className="btn-edit-thread" onClick={handleEditClick}>
-                      ✏️ Edit
-                    </button>
-                    <button className="btn-delete-thread" onClick={handleDeleteDiscussion}>
-                      🗑️ Delete
-                    </button>
-                  </>
-                )}
-                {['instructor', 'admin'].includes(user?.role) && (
-                  <button
-                    className="btn-text-reply"
-                    onClick={() => document.querySelector('.reply-form textarea')?.focus()}
-                  >
-                    ↩ Reply
-                  </button>
-                )}
-              </div>
             </div>
+
+            {/* Edit Modal */}
+            {editMode && (
+              <div className="modal-overlay" onClick={() => setEditMode(false)}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                  <div className="modal-header">
+                    <h3>Edit Thread</h3>
+                    <button className="modal-close" onClick={() => setEditMode(false)}>
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="modal-body">
+                    <div className="form-group">
+                      <textarea
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)}
+                        placeholder="Edit your question..."
+                        className="thread-input thread-textarea"
+                        rows={5}
+                        autoFocus
+                      />
+                    </div>
+                  </div>
+
+                  <div className="modal-footer">
+                    <button className="btn-cancel" onClick={() => setEditMode(false)}>
+                      Cancel
+                    </button>
+                    <button className="btn-submit" onClick={handleUpdateDiscussion}>
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Replies */}
             <div className="replies-section">
