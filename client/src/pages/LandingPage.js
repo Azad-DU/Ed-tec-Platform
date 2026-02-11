@@ -256,7 +256,7 @@ const LandingPage = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="glass-card relative w-full md:h-[218px] h-[215px] border border-white/20 flex flex-col items-center justify-center p-3 md:p-[14px] gap-[10px] rounded-[28px] md:rounded-[34px] cursor-pointer"
+                className="glass-card relative w-full h-full min-h-[215px] border border-white/20 flex flex-col items-center justify-center p-4 gap-3 rounded-[28px] md:rounded-[34px] cursor-pointer"
               >
                 <div className="flex flex-col items-center justify-center gap-3 w-full h-full relative z-10 p-4 text-center">
                   <h3 className="font-bold text-gray-900 dark:text-white text-xl md:text-2xl leading-tight tracking-tight mb-2">
