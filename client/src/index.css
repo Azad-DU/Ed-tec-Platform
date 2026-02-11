@@ -9,6 +9,7 @@
 
   body {
     @apply font-sans antialiased;
+    font-family: 'Hind Siliguri', 'Inter', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     transition: background 0.3s ease;
   }
@@ -71,6 +72,30 @@
       background-position: 100% 50%;
     }
   }
+
+  .glass-card {
+    background: rgba(183, 211, 191, 0.759);
+    box-shadow: rgba(255, 255, 255, 0.35) 0px 3px 0px, rgba(255, 255, 255, 0.12) 0px 0px 24px inset;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14.5px);
+    transition: all 0.5s ease;
+  }
+
+  .glass-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(25, 255, 255, 0.2), rgba(255, 255, 255, 0.35) 0px 3px 0px, rgba(255, 255, 255, 0.12) 0px 0px 24px inset;
+  }
+
+  .dark .glass-card {
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: rgba(255, 255, 255, 0.35) 0px 3px 0px, rgba(255, 255, 255, 0.12) 0px 0px 24px inset;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-card:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 30px rgba(25, 255, 255, 0.2), rgba(255, 255, 255, 0.35) 0px 3px 0px, rgba(255, 255, 255, 0.12) 0px 0px 24px inset;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -80,6 +105,8 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

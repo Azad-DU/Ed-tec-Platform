@@ -39,26 +39,26 @@ const Navbar = () => {
         </div>
 
         <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <Link to="/" className="nav-link" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/courses" className="nav-link" onClick={() => setIsOpen(false)}>Courses</Link>
+          <Link to="/" className="nav-link" onClick={() => setIsOpen(false)}>হোমপেজ</Link>
+          <Link to="/courses" className="nav-link" onClick={() => setIsOpen(false)}>কোর্স-সমূহ</Link>
 
           {isAuthenticated ? (
             <>
               {user?.role !== 'admin' && (
-                <Link to="/dashboard" className="nav-link" onClick={() => setIsOpen(false)}>Dashboard</Link>
+                <Link to="/dashboard" className="nav-link" onClick={() => setIsOpen(false)}>ড্যাশবোর্ড</Link>
               )}
               {(user?.role === 'instructor' || user?.role === 'admin') && (
-                <Link to="/admin" className="nav-link" onClick={() => setIsOpen(false)}>Admin</Link>
+                <Link to="/admin" className="nav-link" onClick={() => setIsOpen(false)}>অ্যাডমিন</Link>
               )}
               <div className="nav-user-actions">
                 {/* On desktop, we might want the badge here too if layout differs, but for now we keep it in header */}
-                <button onClick={() => { logout(); setIsOpen(false); }} className="btn-logout">Logout</button>
+                <button onClick={() => { logout(); setIsOpen(false); }} className="btn-logout">লগ-আউট</button>
               </div>
             </>
           ) : (
             <>
-              <Link to="/login" className="nav-link" onClick={() => setIsOpen(false)}>Login</Link>
-              <Link to="/register" className="btn-register" onClick={() => setIsOpen(false)}>Register</Link>
+              <Link to="/login" className="nav-link" onClick={() => setIsOpen(false)}>লগ-ইন</Link>
+              <Link to="/register" className="btn-register" onClick={() => setIsOpen(false)}>রেজিস্টার</Link>
             </>
           )}
 

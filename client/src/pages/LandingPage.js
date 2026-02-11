@@ -89,35 +89,35 @@ const LandingPage = () => {
   const features = [
     {
       icon: '🎓',
-      title: 'Expert Instructors',
-      description: 'Learn from industry professionals with years of real-world experience',
+      title: 'অভিজ্ঞ শিক্ষকমন্ডলী',
+      description: 'আমাদের শিক্ষকরা সবাই ঢাকা বিশ্ববিদ্যালয়ের রানিং স্টুডেন্ট। যারা নিজ নিজ বিষয়ে পারদর্শী',
       color: 'from-blue-500 to-purple-600',
     },
     {
       icon: '📱',
-      title: 'Learn Anywhere',
-      description: 'Access courses on any device, anytime, anywhere you want',
+      title: 'লার্ন ফ্রম এনিহোয়ার',
+      description: 'যেকেনো জায়গা থেকে আমাদের ক্লাসগুলো ইন্টারনেট কানেকশনের মাধ্যমে এক্সেস করতে পারবে',
       color: 'from-purple-500 to-pink-600',
     },
     {
       icon: '🏆',
-      title: 'Certificates',
-      description: 'Earn recognized certificates upon successful course completion',
+      title: 'কমিউনিট সাপোর্ট ',
+      description: 'আমাদের হাজার হাজার স্টুডেন্টদের সাথে যুক্ত হয়ে বিভিন্ন বিষয়ে ইন্টারেক্ট করতে পারবা',
       color: 'from-pink-500 to-red-600',
     },
     {
       icon: '💬',
-      title: 'Community Support',
-      description: 'Join discussion forums and interact with thousands of peers',
+      title: 'ইন্সট্যান্ট ডাউট সল্ভিং',
+      description: 'যেকেনো ক্লাসে কোনোকিছু না বুঝলে সাথে সাথে ডিসকাশন প্যানেলে জিজ্ঞেস করতে পারে।আমাদের অভিজ্ঞ শিক্ষক দ্রুততম সময়ে উত্তর দিবে',
       color: 'from-green-500 to-teal-600',
     },
   ];
 
   const stats = [
-    { number: '6,894+', label: 'Active Students', icon: '👥' },
-    { number: '50+', label: 'Expert Instructors', icon: '🎓' },
-    { number: `${courseCount}+`, label: 'Quality Courses', icon: '📚' },
-    { number: '68%', label: 'Completion Rate', icon: '⭐' },
+    { number: '৬,৮৯৪+', label: 'অ্যাকটিভ স্টুডেন্ট' },
+    { number: '৫০+', label: 'এক্সপার্ট টিউটরস' },
+    { number: `${courseCount}+`, label: 'কোয়ালিটি কোর্সেস' },
+    { number: '৮৬%', label: 'কমপ্লিশন রেট' },
   ];
 
   const getTagStyle = (difficulty) => {
@@ -158,15 +158,15 @@ const LandingPage = () => {
                 <span className="text-sm font-medium">Rated 4.8/5 by 6,894+ students</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
-                Transform Your Future with
-                <span className="block bg-gradient-to-r from-yellow-300 to-lime-300 bg-clip-text text-transparent mt-2">
-                  Quality Education
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-relaxed">
+                ব্যাবসায় শিক্ষা স্টুডেন্টদের জন্য বিশেষায়িত
+                <span className="block bg-gradient-to-r from-yellow-300 to-lime-300 bg-clip-text text-transparent mt-2 py-4">
+                  লার্নিং প্লাটফর্ম
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-100 dark:text-emerald-200 leading-relaxed">
-                Master all the courses you need to learn to complete your HSC level as a business background student. Our platform is designed to help you succeed.
+                HSC ও অ্যাডমিশনের  সকল বিষয়ে সকল ভিতি দুর করতে এবং ব্যাসিক স্ট্রং করতে এখনই <strong>ফ্রীতে রেজিষ্ট্রেশন</strong>  করে তোমার  শেখার জার্নি শুরু করো
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -174,7 +174,7 @@ const LandingPage = () => {
                   to="/courses"
                   className="group relative px-8 py-4 bg-white dark:bg-gray-900 text-emerald-600 dark:text-emerald-400 rounded-xl font-bold text-lg shadow-2xl hover:shadow-emerald-500/50 transform hover:scale-105 transition-all duration-300"
                 >
-                  <span className="relative z-10">Explore Courses</span>
+                  <span className="relative z-10">কোর্স-সমূহ </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-xl"></div>
                 </Link>
 
@@ -182,7 +182,7 @@ const LandingPage = () => {
                   to="/register"
                   className="px-8 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-sm text-white rounded-xl font-bold text-lg border-2 border-white/30 hover:bg-white/20 dark:hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
                 >
-                  Get Started Free
+                  ফ্রীতে একাউন্ট তৈরি করো
                 </Link>
               </div>
 
@@ -245,10 +245,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-              Why Choose <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Ed-Tech Bangladesh</span>?
+              কেন Ed-tech Bangladesh <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">কে বেছে নিবা</span>?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Everything you need to succeed in your learning journey
+              তোমার সফলতায় আমরা প্রতিজ্ঞাবদ্ধ,আমাদের এখানে পাচ্ছো-
             </p>
           </div>
 
@@ -256,15 +256,15 @@ const LandingPage = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="glass-card relative w-full md:h-[218px] h-[215px] border border-white/20 flex flex-col items-center justify-center p-3 md:p-[14px] gap-[10px] rounded-[28px] md:rounded-[34px] cursor-pointer"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 rounded-xl sm:rounded-2xl transition-opacity duration-300`}></div>
-                <div className="relative z-10">
-                  <div className="text-3xl sm:text-4xl lg:text-6xl mb-2 sm:mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-base sm:text-lg lg:text-2xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-3">{feature.title}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3 sm:line-clamp-none">{feature.description}</p>
+                <div className="flex flex-col items-center justify-center gap-3 w-full h-full relative z-10 p-4 text-center">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-xl md:text-2xl leading-tight tracking-tight mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-emerald-900 dark:text-emerald-300 leading-relaxed opacity-90">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -277,10 +277,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-              Popular Courses
+              পপুলার কোর্স-সমূহ
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              Start learning with our most loved courses
+              আমাদের জনপ্রিয় কোর্সগুলো দিয়ে শেখা শুরু করো
             </p>
           </div>
 
@@ -360,7 +360,8 @@ const LandingPage = () => {
                       }}
                       className="block w-full bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700 text-white text-center py-3 rounded-xl font-bold hover:from-emerald-700 hover:to-teal-700 dark:hover:from-emerald-600 dark:hover:to-teal-600 transform hover:scale-105 transition-all duration-300"
                     >
-                      Enroll Now
+                      এনরোল করো
+
                     </button>
                   </div>
                 </div>
@@ -373,7 +374,7 @@ const LandingPage = () => {
               to="/courses"
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700 text-white rounded-xl font-bold text-lg hover:from-emerald-700 hover:to-teal-700 dark:hover:from-emerald-600 dark:hover:to-teal-600 transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
-              View All Courses
+              সব কোর্স-সমূহ দেখো
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -385,7 +386,7 @@ const LandingPage = () => {
       {/* Reviews Section - Modern Carousel */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 sm:mb-12">Trusted by Students</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 sm:mb-12">স্টুডেন্টদের মতামত</h2>
 
           {loadingReviews ? (
             <div className="flex justify-center"><div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div></div>
@@ -427,10 +428,10 @@ const LandingPage = () => {
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-            Ready to Start Learning?
+            তুমি কি শেখার জন্য প্রস্তুত?
           </h2>
           <p className="text-xl md:text-2xl mb-10 text-emerald-100 dark:text-emerald-200">
-            Join thousands of students already learning on our platform
+            শেখার জার্নিতে হাজার হাজার স্টুডেন্টদের সাথে এখনই যোগ দাও
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -438,13 +439,13 @@ const LandingPage = () => {
               to="/register"
               className="px-10 py-5 bg-white dark:bg-gray-900 text-emerald-600 dark:text-emerald-400 rounded-xl font-bold text-lg shadow-2xl hover:shadow-emerald-500/50 transform hover:scale-105 transition-all duration-300"
             >
-              Create Free Account
+              ফ্রীতে একাউন্ট তৈরি করো
             </Link>
             <Link
               to="/courses"
               className="px-10 py-5 bg-white/10 dark:bg-white/5 backdrop-blur-sm text-white rounded-xl font-bold text-lg border-2 border-white/30 hover:bg-white/20 dark:hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
             >
-              Browse Courses
+              কোর্স-সমূহ
             </Link>
           </div>
         </div>

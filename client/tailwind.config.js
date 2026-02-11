@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Hind Siliguri', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',
